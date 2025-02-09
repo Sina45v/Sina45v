@@ -1,0 +1,113 @@
+/* Auth Styles */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    margin-top: 80px;
+    min-height: calc(100vh - 160px);
+    background-color: #121212;
+}
+
+.auth-card {
+    background: #1e1e1e;
+    border-radius: 10px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #2c2c2c;
+}
+
+.auth-title {
+    color: #bb86fc;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.auth-form .form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 0.8rem;
+    background: #2d2d2d;
+    border: 1px solid #3d3d3d;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.auth-form input::placeholder {
+    color: #888;
+}
+
+.auth-form input:focus {
+    outline: none;
+    border-color: #bb86fc;
+    box-shadow: 0 0 0 2px rgba(187, 134, 252, 0.2);
+}
+
+.auth-button {
+    width: 100%;
+    padding: 1rem;
+    background: #bb86fc;
+    color: #121212;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 1rem;
+}
+
+.auth-button:hover {
+    background: #9a67cf;
+}
+
+.auth-links {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.auth-links a {
+    color: #bb86fc;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: block;
+    margin: 0.5rem 0;
+}
+
+.auth-links a:hover {
+    text-decoration: underline;
+}
+
+/* Error Messages */
+.form-errors {
+    color: #cf6679;
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+    padding-left: 0.5rem;
+}
+
+.non-field-errors {
+    color: #cf6679;
+    background: #2d2d2d;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    border: 1px solid #cf667955;
+}
+
+.input-error {
+    border-color: #cf6679 !important;
+}
+
+.input-error:focus {
+    border-color: #cf6679 !important;
+    box-shadow: 0 0 0 2px rgba(207, 102, 121, 0.2) !important;
+}

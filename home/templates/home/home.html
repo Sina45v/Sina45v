@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block body %}
+<main class="home-container">
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 class="hero-title">Welcome to Our Community</h1>
+        <p class="hero-subtitle">Share your thoughts and engage with others</p>
+    </section>
+
+    <!-- Search Form -->
+    <div class="search-container">
+        <form action="" class="search-form" method="GET">
+            {{ form.search }}
+            <button type="submit" class="search-button">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+    </div>
+
+    <!-- Posts Grid -->
+    <div class="posts-grid">
+        {% for post in posts %}
+        <article class="post-card">
+            <div class="post-header">
+                <a href="{{ post.get_absolute_url }}" class="post-title-link">
+                    <h2 class="post-title">{{ post.title|title }}</h2>
+                </a>
+                <div class="post-meta">
+                    <a href="{% url 'account:profile' post.author.id %}" class="author-link">
+                        <span class="author-name">{{ post.author.username }}</span>
+                    </a>
+                    <time class="post-date">{{ post.created_at|date:"M d, Y" }}</time>
+                </div>
+            </div>
+
+            <div class="post-content-preview">
+                {{ post.content|truncatewords:30|linebreaks }}
+            </div>
+
+            <div class="post-footer">
+                <a href="{{ post.get_absolute_url }}" class="read-more">
+                    Read More →
+                </a>
+            </div>
+        </article>
+        {% empty %}
+        <div class="no-posts">
+            <p>No posts available yet. Be the first to create one!</p>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}

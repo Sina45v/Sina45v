@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Create Post
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/createupdate_post.css' %}">
+{% endblock %}
+
+{% block body %}
+<main class="update-post-page">
+    <h1>Update Post</h1>
+    <form method="post" class="update-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Create" class="submit-button">
+    </form>
+</main>
+{% endblock %}

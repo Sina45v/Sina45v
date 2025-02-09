@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ user.username }}'s Profile{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block body %}
+    <div class="profile-container">
+        <header class="profile-header">
+            <div class="profile-info">
+                <h1 class="profile-username">{{ user.username }}</h1>
+
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <span class="stat-count">{{ followers }}</span>
+                        <span>Followers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-count">{{ following }}</span>
+                        <span>Following</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-count">{{ posts.count }}</span>
+                        <span>Posts</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-actions">
+                {% if request.user.id == user.id %}
+                    <a href="{% url 'account:logout' %}"
+                       class="btn btn-danger">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </a>
+                    <a href="{% url 'account:password_reset' %}"
+                       class="btn btn-primary">
+                        <i class="fas fa-lock"></i>
+                        Change Password
+                    </a>
+                {% else %}
+                    <a href="
+                            {% if followed %}{% url 'account:unfollow' user.id %}{% else %}{% url 'account:follow' user.id %}{% endif %}"
+                       class="btn {% if followed %}btn-danger{% else %}btn-primary{% endif %}">
+                        <i class="fas fa-user{% if followed %}-minus{% else %}-plus{% endif %}"></i>
+                        {% if followed %}Unfollow{% else %}Follow{% endif %}
+                    </a>
+                {% endif %}
+            </div>
+        </header>
+
+        <main class="profile-content">
+            <div class="search-container">
+                <form class="search-form" method="GET">
+                    <input
+                            type="search"
+                            name="search"
+                            placeholder="Search posts..."
+                            class="search-input"
+                            value="{{ request.GET.search }}"
+                    >
+                </form>
+            </div>
+
+            <div class="posts-header">
+                <h2 class="posts-title">Latest Posts</h2>
+                {% if request.user.id == user.id %}
+                    <a href="{% url 'home:post_create' %}"
+                       class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        New Post
+                    </a>
+                {% endif %}
+            </div>
+
+            <div class="posts-grid">
+                {% if posts %}
+                    {% for post in posts %}
+                        <article class="post-card">
+                            <h3 class="post-title">
+                                <a href="{% url 'home:post' post.id %}">{{ post.title }}</a>
+                            </h3>
+                            <div class="post-meta">
+                                <span>{{ post.created_at|date:"M d, Y" }}</span>
+                                <span>{{ post.get_comment_count }}
+                                        {% if post.get_comment_count == 1 %}
+                                            comment {% else %}
+                                            comments{% endif %}</span>
+                                <span>{{ post.get_like_count }} likes</span>
+                            </div>
+                            {% if request.user.id == user.id %}
+                                <div class="post-actions">
+                                    <a href="{% url 'home:post_update' post.id %}"
+                                       class="btn btn-secondary">
+                                        <i class="fas fa-edit"></i>
+                                        Edit
+                                    </a>
+                                    <a href="{% url 'home:post_delete' post.id %}"
+                                       class="btn btn-danger">
+                                        <i class="fas fa-trash"></i>
+                                        Delete
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </article>
+                    {% endfor %}
+                {% else %}
+                    <div class="post-card">
+                        <h3 class="post-title">No posts found</h3>
+                        {% if request.user.id == user.id %}
+                            <p class="post-meta">Create your first post using
+                                the "New Post" button</p>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        </main>
+    </div>
+{% endblock %}

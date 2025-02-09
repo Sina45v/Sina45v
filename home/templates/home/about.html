@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/about.css' %}">
+{% endblock %}
+
+{% block body %}
+<main class="about-container">
+    <div class="about-card">
+        <h1 class="about-title">About This Website</h1>
+
+        <div class="about-content">
+            <p class="creator-info">
+                This website was created by <span class="highlight">Sina45v</span> on
+                <span class="highlight">{% now "F j, Y" %}</span>.
+            </p>
+
+            <div class="website-description">
+                <h2>What is this site?</h2>
+                <p>
+                    This platform is designed as a community-driven Q&A website similar to Stack Overflow,
+                    where users can:
+                </p>
+                <ul class="features-list">
+                    <li>Ask technical questions</li>
+                    <li>Share knowledge through answers</li>
+                    <li>Vote on posts to surface the best content</li>
+                    <li>Earn reputation points through contributions</li>
+                    <li>Collaborate with other developers</li>
+                </ul>
+            </div>
+
+            <div class="stackoverflow-comparison">
+                <h2>Stack Overflow Inspired</h2>
+                <p>
+                    Following the successful model of Stack Overflow, this platform aims to create a
+                    community where developers can:
+                </p>
+                <ul class="so-features">
+                    <li>Find expert answers to coding problems</li>
+                    <li>Share specialized knowledge</li>
+                    <li>Build a public developer profile</li>
+                    <li>Contribute to community-driven knowledge base</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

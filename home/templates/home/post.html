@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/post_detail.css' %}">
+{% endblock %}
+
+{% block body %}
+<main class="post-container">
+    <article class="post-card">
+        <!-- Post Header -->
+        <header class="post-header">
+            <h1 class="post-title">{{ post.title }}</h1>
+            <div class="post-meta">
+                <a href="{% url 'account:profile' post.author.id %}" class="author-link">
+                    <span class="author-name">{{ post.author.username }}</span>
+                </a>
+                <time class="post-date">
+                    {{ post.created_at|date:"M d, Y" }}
+                    {% if post.updated_at %}
+                    (Updated {{ post.updated_at|timesince }} ago)
+                    {% endif %}
+                </time>
+            </div>
+            <!-- Like/Dislike Section -->
+            <div class="likes-section">
+                <span class="likes-count">{{ likes }} Likes</span>
+                <span class="likes-count">{{ disslikes }} DisLikes</span>
+
+                    <a href="{% url "home:like" post.id %}"><button type="submit" class="btn btn-like">Like</button></a>
+                    <a href="{% url "home:dislike" post.id %}" ><button type="submit" class="btn btn-dislike">Dislike</button></a>
+
+            </div>
+        </header>
+
+        <!-- Post Content -->
+        <section class="post-content">
+            {{ post.content|linebreaks }}
+        </section>
+
+        <!-- Comments Section -->
+        <section class="comments-section">
+            <h2 class="section-title">
+                {{ comments.count }} Comment{{ comments.count|pluralize }}
+            </h2>
+
+            <div class="comments-list">
+                {% for comment in comments %}
+                <div class="comment">
+                    <div class="comment-header">
+                        <div class="comment-author">
+                            {{ comment.user.username }}
+                        </div>
+                        <time class="comment-time">
+                            {{ comment.created_at|timesince }} ago
+                        </time>
+                    </div>
+
+                    <div class="comment-body">
+                        {{ comment.body }}
+                    </div>
+
+                    <!-- Replies -->
+                    {% if comment.replies.all %}
+                    <div class="replies-list">
+                        {% for reply in comment.replies.all %}
+                        <div class="reply">
+                            <div class="reply-header">
+                                <div class="reply-author">
+                                    {{ reply.user.username }}
+                                </div>
+                                <time class="reply-time">
+                                    {{ reply.created_at|timesince }} ago
+                                </time>
+                            </div>
+                            <div class="reply-body">
+                                {{ reply.body }}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <!-- Reply Form -->
+                    <div class="reply-form-container">
+                        <form method="post" action="{% url 'home:reply_create' post.id comment.id %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                {{ reply_form.body }}
+                            </div>
+                            <button type="submit" class="btn btn-reply">Reply</button>
+                        </form>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="no-comments">
+                    No comments yet. Be the first to share your thoughts!
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- New Comment Form -->
+            <div class="new-comment">
+                <h3 class="form-title">Leave a Comment</h3>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ comment_form.body }}
+                    </div>
+                    <button type="submit" class="btn btn-comment">Post Comment</button>
+                </form>
+            </div>
+        </section>
+    </article>
+</main>
+{% endblock %}

@@ -1,0 +1,61 @@
+/* createupdate_post.css */
+
+/* Main container styling */
+.update-post-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px; /* Adjust based on navbar height */
+    padding: 20px;
+}
+
+.update-post-page h1 {
+    font-size: 2em;
+    color: #f5f5f5;
+    margin-bottom: 20px;
+}
+
+/* Form styling */
+.update-form {
+    width: 100%;
+    max-width: 600px;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border: 1px solid #2c2c2c;
+    border-radius: 5px;
+}
+
+/* Input fields */
+.input-field,
+.textarea-field {
+    width: 100%;
+    padding: 10px;
+    background-color: #2b2b2b;
+    border: 1px solid #444;
+    border-radius: 5px;
+    color: #e0e0e0;
+    font-size: 1em;
+    margin-bottom: 15px;
+}
+
+.input-field::placeholder,
+.textarea-field::placeholder {
+    color: #888;
+}
+
+/* Submit button */
+.submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #bb86fc;
+    border: none;
+    border-radius: 5px;
+    color: #1f1f1f;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #9a68c3;
+}

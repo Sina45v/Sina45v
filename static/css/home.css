@@ -1,0 +1,159 @@
+/* home/static/css/home.css */
+.home-container {
+    max-width: 1200px;
+    margin: 100px auto 40px;
+    padding: 0 20px;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+    border-radius: 12px;
+}
+
+.hero-title {
+    color: #bb86fc;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.hero-subtitle {
+    color: #e0e0e0;
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.post-card {
+    background: #1e1e1e;
+    border-radius: 12px;
+    padding: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.post-header {
+    margin-bottom: 15px;
+}
+
+.post-title-link {
+    text-decoration: none;
+}
+
+.post-title {
+    color: #bb86fc;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.post-title:hover {
+    color: #9a67cf;
+}
+
+.post-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.author-name {
+    color: #03dac6;
+    text-decoration: none;
+}
+
+.author-name:hover {
+    text-decoration: underline;
+}
+
+.post-content-preview {
+    color: #e0e0e0;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.post-footer {
+    border-top: 1px solid #333;
+    padding-top: 15px;
+    margin-top: 20px;
+}
+
+.read-more {
+    color: #bb86fc;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+}
+
+.read-more:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+.no-posts {
+    text-align: center;
+    padding: 40px 0;
+    color: #888;
+    grid-column: 1 / -1;
+}
+/* Add to home.css and profile.css */
+.search-container {
+    margin-bottom: 40px;
+}
+
+.search-form {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.search-input {
+    width: 100%;
+    padding: 15px 25px;
+    background: #2d2d2d;
+    border: 2px solid #404040;
+    border-radius: 30px;
+    color: #e0e0e0;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    border-color: #bb86fc;
+    box-shadow: 0 0 15px rgba(187, 134, 252, 0.2);
+    outline: none;
+}
+
+.search-button {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.search-button:hover {
+    color: #bb86fc;
+}
